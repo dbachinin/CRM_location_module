@@ -7,9 +7,17 @@
 
     <%= stylesheet_pack_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%if user_signed_in?%>
+    <%= javascript_pack_tag 'Index' %>
+    <% end %>
+<script>
+    user_logged = "<%= user_signed_in? ? 'logged' : 'loggof'%>"
+    </script>
   </head>
 
   <body>
+
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
     <%= yield %>

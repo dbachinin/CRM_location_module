@@ -1,4 +1,4 @@
-class PartnersController < ApplicationController
+class Api::V1::PartnersController < ApplicationController
   before_action :set_partner, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
@@ -6,11 +6,29 @@ class PartnersController < ApplicationController
   # GET /partners.json
   def index
     @partners = Partner.all
+    render json: @partners.map{|p|{ name: p.name, p_locations:  p.locations.map{|l| {city: l.city, coords: l.coords, merchants: p.merchants.map{|m| {coverage: m.percent_cover(l, 0.5), m_coords: m.locations.map(&:coords) } } } } } }
   end
 
   # GET /partners/1
   # GET /partners/1.json
   def show
+    if @partner
+      render json: { 
+        name: @partner.name, 
+        p_locations:  @partner.locations.map{ |l|{
+          city: l.city, 
+          coords: l.coords, 
+          merchants: @partner.merchants.map{|m| {
+            coverage: m.percent_cover(l, 0.5), 
+            m_coords: m.locations.map(&:coords) 
+                  } 
+              } 
+            }
+        }
+      }
+    else
+      render json: @partner.errors
+    end
   end
 
   # GET /partners/new
@@ -26,15 +44,10 @@ class PartnersController < ApplicationController
   # POST /partners.json
   def create
     @partner = Partner.new(partner_params)
-
-    respond_to do |format|
-      if @partner.save
-        format.html { redirect_to @partner, notice: 'Partner was successfully created.' }
-        format.json { render :show, status: :created, location: @partner }
-      else
-        format.html { render :new }
-        format.json { render json: @partner.errors, status: :unprocessable_entity }
-      end
+    if partner
+      render json: @partner
+    else
+      render json: partner.errors
     end
   end
 
@@ -43,10 +56,8 @@ class PartnersController < ApplicationController
   def update
     respond_to do |format|
       if @partner.update(partner_params)
-        format.html { redirect_to @partner, notice: 'Partner was successfully updated.' }
         format.json { render :show, status: :ok, location: @partner }
       else
-        format.html { render :edit }
         format.json { render json: @partner.errors, status: :unprocessable_entity }
       end
     end
@@ -55,11 +66,8 @@ class PartnersController < ApplicationController
   # DELETE /partners/1
   # DELETE /partners/1.json
   def destroy
-    @partner.destroy
-    respond_to do |format|
-      format.html { redirect_to partners_url, notice: 'Partner was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @partner&.destroy
+    render json: { message: 'Partner deleted!' }
   end
 
   private
