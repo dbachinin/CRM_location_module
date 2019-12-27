@@ -21,5 +21,7 @@ Rails.application.routes.draw do
       delete '/partners/destroy/:id', to: 'partners#destroy'
     end
   end
+
+  get '/*path' => 'map#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
