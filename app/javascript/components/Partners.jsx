@@ -24,21 +24,19 @@ class Partners extends React.Component {
 
 render() {
     const { partners } = this.state;
-    const allMerchants = partners.map((partner, index) => (
+    const allPartners = partners.map((partner, index) => (
       <div key={index} className="col-md-6 col-lg-3">
-        <div className="card mb-4">
-
+        <div className="card mb-4"> 
           <div className="card-body">
             <h5 className="card-title">{partner.name}</h5>
-            <p>Count of locations - {partner.location_count}</p>
             <Link to={`/partner/${partner.id}`} className="btn custom-button">
-              View Merchant
+              View Partner
             </Link>
           </div>
         </div>
       </div>
     ));
-    const noMerchant = (
+    const noPartner = (
       <div className="vw-100 vh-50 d-flex align-items-center justify-content-center">
         <h4>
           No partners yet. Why not <Link to="/new_merchant">create one</Link>
@@ -53,9 +51,7 @@ render() {
           <div className="container py-5">
             
             <p className="lead text-muted">
-              We’ve pulled together our most popular recipes, our latest
-              additions, and our editor’s picks, so there’s sure to be something
-              tempting for you to try.
+
             </p>
           </div>
         </section>
@@ -63,11 +59,11 @@ render() {
           <main className="container">
             <div className="text-right mb-3">
               <Link to="/partner" className="btn custom-button">
-                Create New Merchant
+                Create New Partner
               </Link>
             </div>
             <div className="row">
-              {partners.length > 0 ? allMerchants : noMerchant}
+              {partners.length > 0 ? allPartners : noPartner}
             </div>
             <Link to="/" className="btn btn-link">
               Home

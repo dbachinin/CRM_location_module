@@ -6,20 +6,22 @@ class Api::V1::PartnersController < ApplicationController
   # GET /partners.json
   def index
     @partners = Partner.all
-    render json: @partners.map{|p|{ name: p.name, p_locations:  p.locations.map{|l| {city: l.city, coords: l.coords, merchants: p.merchants.map{|m| {coverage: m.percent_cover(l, 0.5), m_coords: m.locations.map(&:coords) } } } } } }
+    render json: @partners.map{ |p| { id: p.id, name: p.name, p_locations:  p.locations.map{|l| {city: l.city, coords: l.coords, merchants: p.merchants.map{|m| {coverage: m.percent_cover(l, 0.5), m_coords: m.locations.map(&:coords) } } } } } }
   end
 
   # GET /partners/1
   # GET /partners/1.json
   def show
     if @partner
-      render json: { 
+      radius = params[:radius]
+      render json: {
+        id: @partner.id,
         name: @partner.name, 
         p_locations:  @partner.locations.map{ |l|{
           city: l.city, 
           coords: l.coords, 
           merchants: @partner.merchants.map{|m| {
-            coverage: m.percent_cover(l, 0.5), 
+            coverage: m.percent_cover(l, radius.to_f), 
             m_coords: m.locations.map(&:coords) 
                   } 
               } 
