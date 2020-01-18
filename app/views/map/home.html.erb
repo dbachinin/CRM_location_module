@@ -1,7 +1,7 @@
 
 <div class="main">
 <%if user_signed_in?%>
-<%#link_to('logout', destroy_user_session_url, method: :delete)%>
+<%#link_to('logout', destroy_user_session_url, method: :delete, remote: true)%>
 <%= javascript_pack_tag 'Index' %>
 <% else %>
 <div class="vw-100 vh-100 primary-color d-flex align-items-center justify-content-center">

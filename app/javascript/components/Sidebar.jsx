@@ -1,72 +1,58 @@
 import React from 'react'
+import $ from 'jquery';
 import "bootstrap"
 
-const Sidebar = (props) =>
+class Sidebar extends React.Component {
+
+  render() {
+    console.log('object')
+    return (
+      <React.Fragment>
 <div id="viewport">
   {/* <!-- Sidebar --> */}
   <div id="sidebar">
     <header>
       <a href="#">My App</a>
     </header>
-    <ul class="nav">
-      <li>
-        <a href="#">
-          <i class="zmdi zmdi-view-dashboard"></i> Dashboard
-        </a>
+    <ul className="nav">
+    <li>
+          <a href="#">Home 1</a>
       </li>
       <li>
-        <a href="#">
-          <i class="zmdi zmdi-link"></i> Shortcuts
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="zmdi zmdi-widgets"></i> Overview
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="zmdi zmdi-calendar"></i> Events
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="zmdi zmdi-info-outline"></i> About
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="zmdi zmdi-settings"></i> Services
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <i class="zmdi zmdi-comment-more"></i> Contact
-        </a>
-      </li>
+        <a href="#">Home 2</a>
+    </li>
     </ul>
   </div>
+
+
   {/* <!-- Content --> */}
   <div id="content">
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <ul class="nav navbar-nav navbar-right">
+    <nav className="navbar navbar-default">
+      <div className="container-fluid">
+        <ul className="nav navbar-nav navbar-right">
           <li>
-            <a href="#"><i class="zmdi zmdi-notifications text-danger"></i>
+            <a href="#"><i className="zmdi zmdi-notifications text-danger"></i>
             </a>
           </li>
           <li><a href="#">Test User</a></li>
         </ul>
       </div>
     </nav>
-    <div class="container-fluid">
+
+
+    <div className="container-fluid">
       <h1>Simple Sidebar</h1>
       <p>
         Make sure to keep all page content within the 
         <code>#content</code>.
       </p>
     </div>
+
+
+    
   </div>
 </div>
+    </React.Fragment> )}
+}
 
 export default Sidebar

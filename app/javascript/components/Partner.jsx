@@ -55,7 +55,7 @@ class Partner extends React.Component {
     return (
         <>
         <Sidebar />
-        <hr3>asdasdas</hr3>
+        <h3>Content</h3>
         
 
         </>);

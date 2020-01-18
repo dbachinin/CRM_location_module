@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  root to: "map#home"
+  root to: 'map#home'
   # resources :merchants
   # resources :partners
   namespace :api do

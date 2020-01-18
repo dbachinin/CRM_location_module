@@ -12,14 +12,14 @@ export default () => (
         <hr className="my-4" />
         <Link
           to="/merchants"
-          className="btn btn-lg custom-button"
+          className="btn btn-lg custom-button mr-1"
           role="button"
         >
           View Merchants
         </Link>
         <Link
           to="/partners"
-          className="btn btn-lg custom-button"
+          className="btn btn-lg custom-button ml-1"
           role="button"
         >
           View Partners
