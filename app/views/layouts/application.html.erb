@@ -7,18 +7,16 @@
 
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%# javascript_pack_tag 'jquery_functions'%>
     <title><%= content_for?(:title) ? yield(:title) : "Mapping clients" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Mapping clients" %>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<script>
-    user_logged = "<%= user_signed_in? ? 'logged' : 'loggof'%>"
-    </script>
+    <script>
+      user_logged = "<%= user_signed_in? ? 'logged' : 'loggof'%>"
+   </script>
   </head>
 
   <body>
-
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>

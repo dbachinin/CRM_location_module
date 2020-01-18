@@ -7,7 +7,7 @@ import Partner from "../components/Partner";
 import Navbar from "../components/Navbar";
 // import Sidebar from "../components/Sidebar"
 
-console.log(typeof $().modal == 'function');
+
 export default (
   <>
   <Navbar />
