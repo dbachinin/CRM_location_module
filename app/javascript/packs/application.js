@@ -22,4 +22,5 @@ require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
 
+
 // Notification.requestPermission().then(function (result) {})

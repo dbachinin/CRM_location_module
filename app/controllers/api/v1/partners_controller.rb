@@ -23,7 +23,10 @@ class Api::V1::PartnersController < ApplicationController
           coords: ->(c){{lat: c[0], lng: c[1]}}[l.coords.split(',').map(&:to_f)],
           merchants: @partner.merchants.map{|m| {
             coverage: m.percent_cover(l, radius.to_f), 
-            m_coords: m.locations.map(&:coords).map{|c| {lat: c.split(',')[0], lng: c.split(',')[1]} }
+            m_coords: m.locations.map(&:coords).map{|c| {
+              lat: c.split(',')[0].to_f,
+              lng: c.split(',')[1].to_f
+              } }
                   }
               }
             }
