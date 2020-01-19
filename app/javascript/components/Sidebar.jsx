@@ -1,10 +1,14 @@
-import React from 'react'
+import React from 'react';
+import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import "bootstrap"
+import { Grid, GridColumn, GridDetailRow, GridToolbar } from '@progress/kendo-react-grid';
+import styled from 'styled-components';
 
 class Sidebar extends React.Component {
 
   render() {
+    console.log(typeof [{ city: 'sfsdfsdf', percent: 2}],this.props.gridData)
     return (
       <React.Fragment>
 <div id="viewport">
@@ -21,30 +25,15 @@ class Sidebar extends React.Component {
         <a href="#">Home 2</a>
     </li>
     </ul>
+    <Grid data={Object.keys(this.props.gridData).length > 0 ? this.props.gridData : [{ city: '', percent: 0.0}]} className="mt-4">
+    <GridColumn field="city" title="City" className="column" color="white" style={{color: "white"}}/>
+    <GridColumn field="percent" title="Percent" className="column" color="white" />
+    </Grid>
   </div>
 
 
   {/* <!-- Content --> */}
-  <div id="content">
-    <nav className="navbar navbar-default">
-      <div className="container-fluid">
-        <ul className="nav navbar-nav navbar-right">
-          <li>
-            <a href="#"><i className="zmdi zmdi-notifications text-danger"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
 
-
-    <div className="container-fluid">
-    <h1>{this.props.name}</h1>
-    </div>
-
-
-    
-  </div>
 </div>
     </React.Fragment> )}
 }

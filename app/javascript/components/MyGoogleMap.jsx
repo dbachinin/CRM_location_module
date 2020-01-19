@@ -55,14 +55,13 @@ class MyGoogleMap extends Component {
   ));
 
   render() {
-    console.log(this.state)
     // if (this.state.loadmarkers) {
     return (
       <Fragment>
         <this.CMap
           googleMapURL={this.props.googleMapURL}
           loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `700px` }} />}
+          containerElement={<div style={{ height: `650px` }} />}
           mapElement={<div style={{ height: `100%` }} />}
           center={this.props.center ? this.props.center : { lat: 47.183856, lng: 39.5822465 }}
         >
@@ -73,7 +72,7 @@ class MyGoogleMap extends Component {
               position={{ lat: 47.254606, lng: 39.7526 }}
             />
           }
-          }
+          
                 </this.CMap>
       </Fragment>
     );
