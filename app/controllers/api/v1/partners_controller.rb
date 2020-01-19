@@ -16,15 +16,16 @@ class Api::V1::PartnersController < ApplicationController
       radius = params[:radius]
       render json: {
         id: @partner.id,
-        name: @partner.name, 
+        name: @partner.name,
+        avg_locations: @partner.average_location,
         p_locations:  @partner.locations.map{ |l|{
           city: l.city, 
-          coords: l.coords, 
+          coords: ->(c){{lat: c[0], lng: c[1]}}[l.coords.split(',').map(&:to_f)],
           merchants: @partner.merchants.map{|m| {
             coverage: m.percent_cover(l, radius.to_f), 
-            m_coords: m.locations.map(&:coords) 
-                  } 
-              } 
+            m_coords: m.locations.map(&:coords).map{|c| {lat: c.split(',')[0], lng: c.split(',')[1]} }
+                  }
+              }
             }
         }
       }

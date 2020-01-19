@@ -5,7 +5,6 @@ import "bootstrap"
 class Sidebar extends React.Component {
 
   render() {
-    console.log('object')
     return (
       <React.Fragment>
 <div id="viewport">
@@ -34,18 +33,13 @@ class Sidebar extends React.Component {
             <a href="#"><i className="zmdi zmdi-notifications text-danger"></i>
             </a>
           </li>
-          <li><a href="#">Test User</a></li>
         </ul>
       </div>
     </nav>
 
 
     <div className="container-fluid">
-      <h1>Simple Sidebar</h1>
-      <p>
-        Make sure to keep all page content within the 
-        <code>#content</code>.
-      </p>
+    <h1>{this.props.name}</h1>
     </div>
 
 

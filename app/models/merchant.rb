@@ -3,7 +3,7 @@ class Merchant < ApplicationRecord
   has_and_belongs_to_many :partners
   validates :name, presence: true
 
-   def location_by_distance(p_location, distance)
+  def location_by_distance(p_location, distance)
     locations.find_each.select do |location|
       lat1 = location.coords.split(',').first.to_f
       lat2 = p_location.coords.split(',').first.to_f

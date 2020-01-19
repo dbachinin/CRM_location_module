@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import Map from "./MyGoogleMap";
 
 
 class Partner extends React.Component {
@@ -9,6 +10,7 @@ class Partner extends React.Component {
     this.state = { partner: { merchants: "" } };
 
     this.addHtmlEntities = this.addHtmlEntities.bind(this);
+    this.response = {};
   }
 
   componentDidMount() {
@@ -18,16 +20,20 @@ class Partner extends React.Component {
       }
     } = this.props;
 
-    const url = `/api/v1/partners/show/${id}?=0.1`;
+    const url = `/api/v1/partners/show/${id}?radius=0.1`;
 
     fetch(url)
       .then(response => {
         if (response.ok) {
+          
           return response.json();
         }
         throw new Error("Network response was not ok.");
       })
-      .then(response => this.setState({ partner: response }))
+      .then(response => {
+        this.response = response; 
+        this.setState((state,props) => ({ partner: props.response })) 
+      })
       .catch(() => this.props.history.push("/partners"));
   }
 
@@ -40,7 +46,6 @@ class Partner extends React.Component {
   render() {
     const { partner } = this.state;
     let ingredientList = "No p_locations available";
-
     // if (partner.p_locations.length > 0) {
     //   ingredientList = partner.p_locations
     //     .split(",")
@@ -54,9 +59,9 @@ class Partner extends React.Component {
 
     return (
         <>
-        <Sidebar />
+        <Sidebar name={this.response.name} />
         <h3>Content</h3>
-        
+        <Map center={this.response.avg_locations} p_locations={this.response.p_locations} />
 
         </>);
     }
